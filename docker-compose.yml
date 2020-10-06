@@ -22,33 +22,33 @@ services:
     ports:
       - 9100:9100
 
-  # nginx-exporter: # nginx + nginx-exporter inside
-  #   image: etiennetremel/nginx-prometheus
-  #   ports:
-  #     - 8080:80      # serving website
-  #     - 9101:9101    # metrics
+  nginx-exporter: # nginx + nginx-exporter inside
+    image: etiennetremel/nginx-prometheus
+    ports:
+      - 8181:80      # serving website
+      - 9101:9101    # metrics
 
-  # postgres:
-  #   image: postgres:10
-  #   ports:
-  #     - 5432:5432
-  #   environment:
-  #     - POSTGRES_USER=workshop
-  #     - POSTGRES_PASSWORD=workshop
-  #   volumes:
-  #     - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  postgres:
+    image: postgres:10
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=workshop
+      - POSTGRES_PASSWORD=workshop
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
-  # postgresql-exporter:
-  #   image: wrouesnel/postgres_exporter
-  #   ports:
-  #     - 9187:9187
-  #   environment:
-  #     - DATA_SOURCE_NAME=postgresql://workshop:workshop@postgres:5432/workshop?sslmode=disable
-  #     - PG_EXPORTER_EXTEND_QUERY_PATH=/custom-queries.yaml
-  #   volumes:
-  #     - ./custom-queries.yml:/custom-queries.yaml
-  #   depends_on:
-  #     - postgres
+  postgresql-exporter:
+    image: wrouesnel/postgres_exporter
+    ports:
+      - 9187:9187
+    environment:
+      - DATA_SOURCE_NAME=postgresql://workshop:workshop@postgres:5432/workshop?sslmode=disable
+      - PG_EXPORTER_EXTEND_QUERY_PATH=/custom-queries.yaml
+    volumes:
+      - ./custom-queries.yml:/custom-queries.yaml
+    depends_on:
+      - postgres
 
 volumes:
   prometheus-data:
