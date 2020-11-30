@@ -1,55 +1,5 @@
 global:
   # default scrape_interval
-  scrape_interval: 10s
-
-remote_write:
-- url: https://prometheus-us-central1.grafana.net/api/prom/push
-  basic_auth:
-    username: 16110
-    password: eyJrIjoiMmQzYjk4ZjdkZjg1YzlhMjA5OTRlMWJkNDY3ZTQ2MDg0NzFlODU1NSIsIm4iOiJ0am96c2EiLCJpZCI6NDIzMDcwfQ==
-- url: https://prometheus-us-central1.grafana.net/api/prom/push
-  basic_auth:
-    username: 16108
-    password: eyJrIjoiMmEwY2U5Yjk0NDQ4NTQ3YjVjOWI2YThjZGI2ZTcwZmUyNGZiNzRlMSIsIm4iOiJUZXN0dXNlciIsImlkIjo0MjMwNjZ9
-- url: https://prometheus-us-central1.grafana.net/api/prom/push
-  basic_auth:
-    username: 16112
-    password: eyJrIjoiNjgzZDU1NjZkY2IyOTQyN2IxODRhZTRmNGViODBmMGQxZTJiMWE2NSIsIm4iOiJyZW1vdGVfa2V5IiwiaWQiOjQyMzA3MX0=
-- url: https://prometheus-us-central1.grafana.net/api/prom/push
-  basic_auth:
-    username: 15994
-    password: eyJrIjoiYWY4ZGNmZGI3ZjQ2OGRhMDU0NzgzM2JkZmU5NGVjMjc5MGJhYjA2MyIsIm4iOiJyZW1vdGVfa2V5IiwiaWQiOjQyMjU5Nn0=
-- url: https://prometheus-us-central1.grafana.net/api/prom/push
-  basic_auth:
-    username: 16122
-    password: eyJrIjoiNDRmODM0MTEzMzQ5MGM0MTdiMGM5Yjg3OTFiNmFiZDFlMjEwNmUxMSIsIm4iOiJwcm9tX3BldGVyIiwiaWQiOjQyMzA5MX0=
-- url: https://prometheus-us-central1.grafana.net/api/prom/push
-  basic_auth:
-    username: 16116
-    password: eyJrIjoiZmI1ZTQzOGM4OWQ1ODk5YzJlZDRhMzYyNTdhMGIzYzU0YTViMDA4ZiIsIm4iOiJaRyIsImlkIjo0MjMwNzZ9
-- url: https://prometheus-us-central1.grafana.net/api/prom/push
-  basic_auth:
-    username: 16114
-    password: eyJrIjoiMTkwZTU2N2U4ZTA4YzFmNWM3OWE2NTMzNTBjNzhkMWQ1YjVkMTM3YiIsIm4iOiJ0am96c2EtbXAiLCJpZCI6NDIzMDcyfQ==
-- url: https://prometheus-us-central1.grafana.net/api/prom/push
-  basic_auth:
-    username: 16126
-    password: eyJrIjoiNmZlM2JiYWE2Yzg5ZTYwNzE1MzM4ZjVkNjFiYWE5MWQ5NGVlOTBmNiIsIm4iOiJteXRlc3QiLCJpZCI6NDIzMDkyfQ==
+  scrape_interval: 30s
 
 scrape_configs:
-- job_name: 'node-exporter'
-  scrape_interval: 10s
-  static_configs:
-    - targets: ['node-exporter:9100']
-- job_name: 'jenkins-exporter'
-  metrics_path: /prometheus
-  scrape_interval: 10s
-  static_configs:
-    - targets: ['13.80.72.102:8080']
-- job_name: 'postgresql-exporter'
-  static_configs:
-    - targets: ['postgresql-exporter:9187']
-
-- job_name: 'nginx-exporter'
-  static_configs:
-    - targets: ['nginx-exporter:9101']
