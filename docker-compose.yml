@@ -28,6 +28,10 @@ services:
     ports:
       - 8181:80      # serving website
       - 9101:9101    # metrics
+    logging:
+      driver: loki
+      options:
+        loki-url: "https://loki:3100/loki/api/v1/push"
 
   postgres:
     image: postgres:10
@@ -38,6 +42,10 @@ services:
       - POSTGRES_PASSWORD=workshop
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    logging:
+      driver: loki
+      options:
+        loki-url: "https://loki:3100/loki/api/v1/push"
 
   postgresql-exporter:
     image: wrouesnel/postgres_exporter
@@ -62,6 +70,6 @@ services:
     volumes:
       - /var/log:/var/log
     command: -config.file=/etc/promtail/config.yml
-    
+
 volumes:
   prometheus-data:
