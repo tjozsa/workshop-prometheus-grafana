@@ -4,4 +4,3 @@ global:
 
 scrape_configs:
 #NODEEXPORTER
-#NODEEXPORTER
