@@ -31,7 +31,7 @@ services:
     logging:
       driver: loki
       options:
-        loki-url: "https://localhost:3100/loki/api/v1/push"
+        loki-url: "http://localhost:3100/api/prom/push"
 
   postgres:
     image: postgres:10
@@ -45,7 +45,7 @@ services:
     logging:
       driver: loki
       options:
-        loki-url: "https://localhost:3100/loki/api/v1/push"
+        loki-url: "http://localhost:3100/api/prom/push"
 
   postgresql-exporter:
     image: wrouesnel/postgres_exporter
