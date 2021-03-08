@@ -8,6 +8,10 @@ services:
     volumes:
       - prometheus-data:/prometheus
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    logging:
+      driver: loki
+      options:
+        loki-url: "https://localhost:3100/loki/api/v1/push"
 
   grafana:
     image: grafana/grafana
@@ -17,6 +21,10 @@ services:
       - ./grafana.db:/etc/grafana/grafana.db
       - ./grafana.ini:/etc/grafana/grafana.ini
       - ./provisioning/datasources:/etc/grafana/provisioning/datasources
+    logging:
+      driver: loki
+      options:
+        loki-url: "https://localhost:3100/loki/api/v1/push"
 
   node-exporter:
     image: prom/node-exporter
@@ -32,6 +40,10 @@ services:
     ports:
       - 8181:80      # serving website
       - 9101:9101    # metrics
+    logging:
+      driver: loki
+      options:
+        loki-url: "https://localhost:3100/loki/api/v1/push"
 
   postgres:
     image: postgres:10
@@ -58,12 +70,20 @@ services:
       - ./custom-queries.yml:/custom-queries.yaml
     depends_on:
       - postgres
+    logging:
+      driver: loki
+      options:
+        loki-url: "https://localhost:3100/loki/api/v1/push"
 
   loki:
     image: grafana/loki:2.0.0
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
+    logging:
+      driver: loki
+      options:
+        loki-url: "https://localhost:3100/loki/api/v1/push"
 
   promtail:
     image: grafana/promtail:2.0.0
