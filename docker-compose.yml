@@ -22,7 +22,11 @@ services:
     image: prom/node-exporter
     ports:
       - 9100:9100
-
+    logging:
+      driver: loki
+      options:
+        loki-url: "https://localhost:3100/loki/api/v1/push"
+        
   nginx-exporter: # nginx + nginx-exporter inside
     image: etiennetremel/nginx-prometheus
     ports:
@@ -38,6 +42,10 @@ services:
       - POSTGRES_PASSWORD=workshop
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    logging:
+      driver: loki
+      options:
+        loki-url: "https://localhost:3100/loki/api/v1/push"
 
   postgresql-exporter:
     image: wrouesnel/postgres_exporter
