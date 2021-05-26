@@ -6,5 +6,11 @@ scrape_configs:
     scrape_interval: 10s
     static_configs:
       - targets: ['node-exporter:9100']
-#NGINXEXPORTER
-#PGSQLEXPORTER
+  - job_name: 'nginx-exporter'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['nginx-exporter:9101']
+  - job_name: 'postgresql-exporter'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['postgresql-exporter:9187']
